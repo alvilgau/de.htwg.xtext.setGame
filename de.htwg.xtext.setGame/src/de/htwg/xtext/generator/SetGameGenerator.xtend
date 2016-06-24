@@ -3,8 +3,7 @@
  */
 package de.htwg.xtext.generator
 
-import de.htwg.xtext.setGame.Element
-import de.htwg.xtext.setGame.Model
+import de.htwg.xtext.setGame.Card
 import org.eclipse.emf.common.util.EList
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.AbstractGenerator
@@ -20,49 +19,47 @@ class SetGameGenerator extends AbstractGenerator {
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 
-		for (model : resource.allContents.filter(Model).toIterable) {
-			println(model)
-			fsa.generateFile(model.name + ".java", compile(model))
+		for (card : resource.allContents.filter(Card).toIterable) {
+			println(card)
+			fsa.generateFile(card.name + ".java", createCard(card))
 		}
 	}
 
-	def compile(Model model) '''
-		package «model.package»;
+	def createCard(Card card) '''
+		package de.htwg.se.setgame.model.impl;
 		
-		«FOR imp : model.imports»
-			import «imp»;
-		«ENDFOR»
+		import de.htwg.se.setgame.model.ICard;
+		import de.htwg.se.setgame.model.ICardList;
 		
-		public class «model.name» «compileImplements(model.implements)»{
-			«compileElements(model.elements)»
+		public class «card.name» implements ICard {
+			«createField(card.colors, "color", "String")»
+			«createField(card.forms, "form", "String")»
+			«createField(card.fillings, "filling", "String")»
+			«createField(card.counts, "count", "Integer")»
+			
+			«createMethod(card.colors, "color", "String")»
+			«createMethod(card.forms, "form", "String")»
+			«createMethod(card.fillings, "filling", "String")»
+			«createMethod(card.counts, "count", "Integer")»
 		}
 	'''
 
-	def compileImplements(EList<String> interfaces) '''
-		«IF !interfaces.empty»
-			«FOR iface : interfaces BEFORE "implements " SEPARATOR ", " »«iface»«ENDFOR»
+	def createField(EList<?> list, String name, String type) '''
+		«IF !list.isEmpty»
+			private «type» «name»;
 		«ENDIF»
 	'''
 
-	def compileElements(EList<Element> elements) '''
-		«FOR element : elements»
-			private «element.type.toString.toFirstUpper» «element.name»;
-		«ENDFOR»
-		
-		«compileMethods(elements)»
-	'''
-
-	def compileMethods(EList<Element> elements) '''
-		«FOR element : elements»
-			public «element.type.toString.toFirstUpper» get«element.name.toFirstUpper»() {
-				return this.«element.name»;
+	def createMethod(EList<?> list, String name, String type) '''
+		«IF !list.isEmpty»
+			public «type» get«name.toFirstUpper»() {
+				return this.«name»;
 			}
 			
-			public void set«element.name.toFirstUpper»(«element.type.toString.toFirstUpper» «element.name») {
-				this.«element.name» = «element.name»;
+			public void set«name.toFirstUpper»(«type» «name») {
+				this.«name» = «name»;
 			}
 			
-		«ENDFOR»
+		«ENDIF»
 	'''
-
 }

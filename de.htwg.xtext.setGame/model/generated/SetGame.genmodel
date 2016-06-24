@@ -6,25 +6,35 @@
     complianceLevel="6.0" copyrightFields="false" runtimeVersion="2.11">
   <genPackages prefix="SetGame" basePackage="de.htwg.xtext" disposableProviderFactory="true"
       fileExtensions="setgame" ecorePackage="SetGame.ecore#/">
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="SetGame.ecore#//Datatype">
-      <genEnumLiterals ecoreEnumLiteral="SetGame.ecore#//Datatype/string"/>
-      <genEnumLiterals ecoreEnumLiteral="SetGame.ecore#//Datatype/byte"/>
-      <genEnumLiterals ecoreEnumLiteral="SetGame.ecore#//Datatype/short"/>
-      <genEnumLiterals ecoreEnumLiteral="SetGame.ecore#//Datatype/integer"/>
-      <genEnumLiterals ecoreEnumLiteral="SetGame.ecore#//Datatype/long"/>
-      <genEnumLiterals ecoreEnumLiteral="SetGame.ecore#//Datatype/float"/>
-      <genEnumLiterals ecoreEnumLiteral="SetGame.ecore#//Datatype/double"/>
-    </genEnums>
     <genClasses ecoreClass="SetGame.ecore#//Model">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SetGame.ecore#//Model/package"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SetGame.ecore#//Model/imports"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SetGame.ecore#//Model/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SetGame.ecore#//Model/implements"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SetGame.ecore#//Model/elements"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SetGame.ecore#//Model/options"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SetGame.ecore#//Model/card"/>
     </genClasses>
-    <genClasses ecoreClass="SetGame.ecore#//Element">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SetGame.ecore#//Element/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SetGame.ecore#//Element/type"/>
+    <genClasses ecoreClass="SetGame.ecore#//Option">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SetGame.ecore#//Option/colors"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SetGame.ecore#//Option/forms"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SetGame.ecore#//Option/fillings"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SetGame.ecore#//Option/counts"/>
+    </genClasses>
+    <genClasses ecoreClass="SetGame.ecore#//Color">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SetGame.ecore#//Color/name"/>
+    </genClasses>
+    <genClasses ecoreClass="SetGame.ecore#//Form">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SetGame.ecore#//Form/name"/>
+    </genClasses>
+    <genClasses ecoreClass="SetGame.ecore#//Filling">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SetGame.ecore#//Filling/name"/>
+    </genClasses>
+    <genClasses ecoreClass="SetGame.ecore#//Count">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SetGame.ecore#//Count/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SetGame.ecore#//Count/value"/>
+    </genClasses>
+    <genClasses ecoreClass="SetGame.ecore#//Card">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SetGame.ecore#//Card/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SetGame.ecore#//Card/colors"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SetGame.ecore#//Card/forms"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SetGame.ecore#//Card/fillings"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SetGame.ecore#//Card/counts"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

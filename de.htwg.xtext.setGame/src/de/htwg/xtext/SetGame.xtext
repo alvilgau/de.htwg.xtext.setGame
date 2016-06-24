@@ -3,21 +3,27 @@ grammar de.htwg.xtext.SetGame with org.eclipse.xtext.common.Terminals
 generate setGame "http://www.htwg.de/xtext/SetGame"
 
 Model:
-	'package' package=QualifiedName
-	('imports' imports+=Import (',' imports+=Import)*)?
-	'entity' name=ID
-	('implements' implements+=ID (',' implements+=ID)*)?
-	'{' (elements+=Element)* '}';
+	(options+=Option)*
+	card=Card;
 
-QualifiedName:
-	ID ('.' ID)*;
+Option:
+	colors+=Color | forms+=Form | fillings+=Filling | counts+=Count;
 
-Import:
-	QualifiedName ('.*')?;
+Color:
+	'color' name=ID;
 
-Element:
-	name=ID ':' type=Datatype;
-	
-enum Datatype:
-	string | byte | short | integer | long | float | double;
-	
+Form:
+	'form' name=ID;
+
+Filling:
+	'filling' name=ID;
+
+Count:
+	'count' name=ID value=INT;
+
+Card:
+	'card' name=ID
+	('colors' '{' colors+=[Color] (',' colors+=[Color])* '}')?
+	('forms' '{' forms+=[Form] (',' forms+=[Form])* '}')?
+	('fillings' '{' fillings+=[Filling] (',' fillings+=[Filling])* '}')?
+	('counts' '{' counts+=[Count] (',' counts+=[Count])* '}')?;
