@@ -1,0 +1,23 @@
+grammar de.htwg.xtext.SetGame with org.eclipse.xtext.common.Terminals
+
+generate setGame "http://www.htwg.de/xtext/SetGame"
+
+Model:
+	'package' package=QualifiedName
+	('imports' imports+=Import (',' imports+=Import)*)?
+	'entity' name=ID
+	('implements' implements+=ID (',' implements+=ID)*)?
+	'{' (elements+=Element)* '}';
+
+QualifiedName:
+	ID ('.' ID)*;
+
+Import:
+	QualifiedName ('.*')?;
+
+Element:
+	name=ID ':' type=Datatype;
+	
+enum Datatype:
+	string | byte | short | integer | long | float | double;
+	

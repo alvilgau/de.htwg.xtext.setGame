@@ -1,0 +1,9 @@
+.settings
+.classpath
+target
+bin
+*.class
+src-gen
+xtend-gen
+plugin.xml_gen
+*.jar
