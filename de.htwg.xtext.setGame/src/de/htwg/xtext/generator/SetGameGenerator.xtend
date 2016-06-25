@@ -31,35 +31,34 @@ class SetGameGenerator extends AbstractGenerator {
 		import de.htwg.se.setgame.model.ICard;
 		import de.htwg.se.setgame.model.ICardList;
 		
-		public class «card.name» implements ICard {
-			«createField(card.colors, "color", "String")»
-			«createField(card.forms, "form", "String")»
-			«createField(card.fillings, "filling", "String")»
-			«createField(card.counts, "count", "Integer")»
-			
-			«createMethod(card.colors, "color", "String")»
-			«createMethod(card.forms, "form", "String")»
-			«createMethod(card.fillings, "filling", "String")»
-			«createMethod(card.counts, "count", "Integer")»
+		public class Â«card.nameÂ» implements ICard {
+			Â«createField(card.colors, "color", "String")Â»
+			Â«createField(card.forms, "form", "String")Â»
+			Â«createField(card.fillings, "filling", "String")Â»
+			Â«createField(card.counts, "count", "Integer")Â»
+			Â«createMethod(card.colors, "color", "String")Â»
+			Â«createMethod(card.forms, "form", "String")Â»
+			Â«createMethod(card.fillings, "filling", "String")Â»
+			Â«createMethod(card.counts, "count", "Integer")Â»
 		}
 	'''
 
 	def createField(EList<?> list, String name, String type) '''
-		«IF !list.isEmpty»
-			private «type» «name»;
-		«ENDIF»
+		Â«IF !list.isEmptyÂ»
+			private  Â«typeÂ» Â«nameÂ»;
+		Â«ENDIFÂ»
 	'''
 
 	def createMethod(EList<?> list, String name, String type) '''
-		«IF !list.isEmpty»
-			public «type» get«name.toFirstUpper»() {
-				return this.«name»;
+		Â«IF !list.isEmptyÂ»
+			public Â«typeÂ» getÂ«name.toFirstUpperÂ»() {
+				return this.Â«nameÂ»;
 			}
 			
-			public void set«name.toFirstUpper»(«type» «name») {
-				this.«name» = «name»;
+			public void setÂ«name.toFirstUpperÂ»(Â«typeÂ» Â«nameÂ») {
+				this.Â«nameÂ» = Â«nameÂ»;
 			}
 			
-		«ENDIF»
+		Â«ENDIFÂ»
 	'''
 }
