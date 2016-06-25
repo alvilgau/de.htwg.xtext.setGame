@@ -36,6 +36,7 @@ class SetGameGenerator extends AbstractGenerator {
 			«createField(card.forms, "form", "String")»
 			«createField(card.fillings, "filling", "String")»
 			«createField(card.counts, "count", "Integer")»
+			
 			«createMethod(card.colors, "color", "String")»
 			«createMethod(card.forms, "form", "String")»
 			«createMethod(card.fillings, "filling", "String")»
