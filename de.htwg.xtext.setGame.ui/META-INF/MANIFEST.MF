@@ -18,7 +18,7 @@ Require-Bundle: de.htwg.xtext.setGame,
  org.eclipse.xtend.lib;resolution:=optional,
  org.eclipse.xtext.xbase.lib
 Import-Package: org.apache.log4j
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: de.htwg.xtext.ui.contentassist,
  de.htwg.xtext.setGame.ui.internal,
  de.htwg.xtext.ui.quickfix
