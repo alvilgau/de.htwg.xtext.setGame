@@ -3,27 +3,8 @@ grammar de.htwg.xtext.SetGame with org.eclipse.xtext.common.Terminals
 generate setGame "http://www.htwg.de/xtext/SetGame"
 
 Model:
-	(options+=Option)*
-	card=Card;
+	(options+=Option)*;
 
 Option:
-	colors+=Color | forms+=Form | fillings+=Filling | counts+=Count;
-
-Color:
-	'color' name=ID;
-
-Form:
-	'form' name=ID;
-
-Filling:
-	'filling' name=ID;
-
-Count:
-	'count' name=ID value=INT;
-
-Card:
-	'card' name=ID
-	('colors' '{' colors+=[Color] (',' colors+=[Color])* '}')?
-	('forms' '{' forms+=[Form] (',' forms+=[Form])* '}')?
-	('fillings' '{' fillings+=[Filling] (',' fillings+=[Filling])* '}')?
-	('counts' '{' counts+=[Count] (',' counts+=[Count])* '}')?;
+	'option' name=ID '{' (values+=STRING)* '}';
+	

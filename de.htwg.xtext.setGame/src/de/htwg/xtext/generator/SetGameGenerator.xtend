@@ -3,12 +3,11 @@
  */
 package de.htwg.xtext.generator
 
-import de.htwg.xtext.setGame.Card
-import org.eclipse.emf.common.util.EList
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
+import de.htwg.xtext.setGame.Option
 
 /**
  * Generates code from your model files on save.
@@ -19,47 +18,47 @@ class SetGameGenerator extends AbstractGenerator {
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 
-		for (card : resource.allContents.filter(Card).toIterable) {
-			println(card)
-			fsa.generateFile(card.name + ".java", createCard(card))
+		for (option : resource.allContents.filter(Option).toIterable) {
+			println(option)
+//			fsa.generateFile(card.name + ".java", createCard(card))
 		}
 	}
 
-	def createCard(Card card) '''
-		package de.htwg.se.setgame.model.impl;
-		
-		import de.htwg.se.setgame.model.ICard;
-		import de.htwg.se.setgame.model.ICardList;
-		
-		public class «card.name» implements ICard {
-			«createField(card.colors, "color", "String")»
-			«createField(card.forms, "form", "String")»
-			«createField(card.fillings, "filling", "String")»
-			«createField(card.counts, "count", "Integer")»
-			
-			«createMethod(card.colors, "color", "String")»
-			«createMethod(card.forms, "form", "String")»
-			«createMethod(card.fillings, "filling", "String")»
-			«createMethod(card.counts, "count", "Integer")»
-		}
-	'''
-
-	def createField(EList<?> list, String name, String type) '''
-		«IF !list.isEmpty»
-			private  «type» «name»;
-		«ENDIF»
-	'''
-
-	def createMethod(EList<?> list, String name, String type) '''
-		«IF !list.isEmpty»
-			public «type» get«name.toFirstUpper»() {
-				return this.«name»;
-			}
-			
-			public void set«name.toFirstUpper»(«type» «name») {
-				this.«name» = «name»;
-			}
-			
-		«ENDIF»
-	'''
+//	def createCard(Card card) '''
+//		package de.htwg.se.setgame.model.impl;
+//		
+//		import de.htwg.se.setgame.model.ICard;
+//		import de.htwg.se.setgame.model.ICardList;
+//		
+//		public class «card.name» implements ICard {
+//			«createField(card.colors, "color", "String")»
+//			«createField(card.forms, "form", "String")»
+//			«createField(card.fillings, "filling", "String")»
+//			«createField(card.counts, "count", "Integer")»
+//			
+//			«createMethod(card.colors, "color", "String")»
+//			«createMethod(card.forms, "form", "String")»
+//			«createMethod(card.fillings, "filling", "String")»
+//			«createMethod(card.counts, "count", "Integer")»
+//		}
+//	'''
+//
+//	def createField(EList<?> list, String name, String type) '''
+//		«IF !list.isEmpty»
+//			private  «type» «name»;
+//		«ENDIF»
+//	'''
+//
+//	def createMethod(EList<?> list, String name, String type) '''
+//		«IF !list.isEmpty»
+//			public «type» get«name.toFirstUpper»() {
+//				return this.«name»;
+//			}
+//			
+//			public void set«name.toFirstUpper»(«type» «name») {
+//				this.«name» = «name»;
+//			}
+//			
+//		«ENDIF»
+//	'''
 }

@@ -4,40 +4,10 @@
   <eClassifiers xsi:type="ecore:EClass" name="Model">
     <eStructuralFeatures xsi:type="ecore:EReference" name="options" upperBound="-1"
         eType="#//Option" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="card" eType="#//Card" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Option">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="colors" upperBound="-1"
-        eType="#//Color" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="forms" upperBound="-1"
-        eType="#//Form" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="fillings" upperBound="-1"
-        eType="#//Filling" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="counts" upperBound="-1"
-        eType="#//Count" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Color">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Form">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Filling">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Count">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Card">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="colors" unique="false"
-        upperBound="-1" eType="#//Color"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="forms" unique="false" upperBound="-1"
-        eType="#//Form"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="fillings" unique="false"
-        upperBound="-1" eType="#//Filling"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="counts" unique="false"
-        upperBound="-1" eType="#//Count"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="values" unique="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>
