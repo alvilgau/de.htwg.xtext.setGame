@@ -22,7 +22,7 @@ class SetGameGenerator extends AbstractGenerator {
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 
 		val pkgPrefix = "de/htwg/se/setgame/"
-		new ModelGenerator(pkgPrefix + "model/").doGenerate(resource, fsa, context);
+		new de.htwg.xtext.generator.model.Generator(pkgPrefix + "model/").doGenerate(resource, fsa, context);
 		new de.htwg.xtext.generator.persistence.Generator(pkgPrefix + "model/").doGenerate(resource, fsa, context);
 
 		val options = resource.allContents.filter(Option).toList
