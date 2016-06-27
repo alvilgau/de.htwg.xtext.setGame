@@ -15,16 +15,25 @@ import org.eclipse.xtext.validation.Check
 class SetGameValidator extends AbstractSetGameValidator {
 
 	public static val MIN_NUMBER_OF_OPTION_VALUES = 3
+	public static val ERROR_MESSAGE = "You must define at least %d option values (currently only %d)"
 
 	@Check
 	def checkNumberOfOptionValues(Model model) {
+		var values = count(model)
+		check(values, MIN_NUMBER_OF_OPTION_VALUES)
+	}
+	
+	def private count(Model model) {
 		var values = 0;
 		for (option : model.options) {
 			values += option.values.size
 		}
-
-		if (values < MIN_NUMBER_OF_OPTION_VALUES) {
-			error("You must define at least 3 option values", SetGamePackage.Literals.MODEL__OPTIONS)
+		return values;
+	}
+	
+	def private check(int values, int min) {
+		if (values < min) {
+			error(String::format(ERROR_MESSAGE, min, values), SetGamePackage.Literals.MODEL__OPTIONS)
 		}
 	}
 
