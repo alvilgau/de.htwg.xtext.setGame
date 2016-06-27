@@ -6,5 +6,5 @@ Model:
 	(options+=Option)*;
 
 Option:
-	'option' name=ID '{' (values+=STRING)* '}';
+	'option' name=ID '{' (values+=STRING)+ '}';
 	

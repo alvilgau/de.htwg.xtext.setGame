@@ -3,11 +3,12 @@
  */
 package de.htwg.xtext.generator
 
+import com.google.inject.Inject
+import de.htwg.xtext.setGame.Option
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
-import de.htwg.xtext.setGame.Option
 
 /**
  * Generates code from your model files on save.
@@ -16,49 +17,24 @@ import de.htwg.xtext.setGame.Option
  */
 class SetGameGenerator extends AbstractGenerator {
 
+	@Inject IOptionGenerator optionGenerator;
+	@Inject IOptionValueGenerator optionValueGenerator;
+	@Inject OptionDaoGenerator optionDaoGenerator;
+	@Inject OptionValueDaoGenerator optionValueDaoGenerator;
+	@Inject CardOptionsGenerator cardOptionsGenerator;
+
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 
-		for (option : resource.allContents.filter(Option).toIterable) {
-			println(option)
-//			fsa.generateFile(card.name + ".java", createCard(card))
-		}
-	}
+		val pkgPrefix = "de/htwg/se/setgame/"
+		fsa.generateFile(pkgPrefix + "model/" + optionGenerator.name(), optionGenerator.compile())
+		fsa.generateFile(pkgPrefix + "model/" + optionValueGenerator.name(), optionValueGenerator.compile())
+		fsa.generateFile(pkgPrefix + "util/persistence/" + optionDaoGenerator.name(), optionDaoGenerator.compile())
+		fsa.generateFile(pkgPrefix + "util/persistence/" + optionValueDaoGenerator.name(),
+			optionValueDaoGenerator.compile())
 
-//	def createCard(Card card) '''
-//		package de.htwg.se.setgame.model.impl;
-//		
-//		import de.htwg.se.setgame.model.ICard;
-//		import de.htwg.se.setgame.model.ICardList;
-//		
-//		public class «card.name» implements ICard {
-//			«createField(card.colors, "color", "String")»
-//			«createField(card.forms, "form", "String")»
-//			«createField(card.fillings, "filling", "String")»
-//			«createField(card.counts, "count", "Integer")»
-//			
-//			«createMethod(card.colors, "color", "String")»
-//			«createMethod(card.forms, "form", "String")»
-//			«createMethod(card.fillings, "filling", "String")»
-//			«createMethod(card.counts, "count", "Integer")»
-//		}
-//	'''
-//
-//	def createField(EList<?> list, String name, String type) '''
-//		«IF !list.isEmpty»
-//			private  «type» «name»;
-//		«ENDIF»
-//	'''
-//
-//	def createMethod(EList<?> list, String name, String type) '''
-//		«IF !list.isEmpty»
-//			public «type» get«name.toFirstUpper»() {
-//				return this.«name»;
-//			}
-//			
-//			public void set«name.toFirstUpper»(«type» «name») {
-//				this.«name» = «name»;
-//			}
-//			
-//		«ENDIF»
-//	'''
+		val options = resource.allContents.filter(Option).toList
+		fsa.generateFile(pkgPrefix + "controller/impl/" + cardOptionsGenerator.name(),
+			cardOptionsGenerator.compile(options))
+
+	}
 }
