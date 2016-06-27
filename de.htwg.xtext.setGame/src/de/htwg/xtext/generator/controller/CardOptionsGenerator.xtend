@@ -11,30 +11,30 @@ class CardOptionsGenerator {
 
 	def compile(List<Option> options) '''
 		package de.htwg.se.setgame.controller.impl;
-		
+
 		import de.htwg.se.setgame.model.IOption;
 		import de.htwg.se.setgame.model.IOptionValue;
+		import de.htwg.se.setgame.util.persistence.DaoManager;
 		import de.htwg.se.setgame.util.persistence.OptionDao;
 		import de.htwg.se.setgame.util.persistence.OptionValueDao;
-		
+
 		import java.util.LinkedHashSet;
 		import java.util.LinkedList;
 		import java.util.List;
-		
+
 		public class CardOptions {
-		
+
 		    private final OptionDao optionDao;
 		    private final OptionValueDao optionValueDao;
-		
+
 		    /**
-		     * @param optionDao Instance of OptionDao
-		     * @param optionValueDao Instance of OptionValueDao
+		     * @param dao Instance of DaoManager
 		     */
-		    protected CardOptions(OptionDao optionDao, OptionValueDao optionValueDao) {
-		        this.optionDao = optionDao;
-		        this.optionValueDao = optionValueDao;
+		    protected CardOptions(DaoManager dao) {
+				this.optionDao = dao.getOption();
+				this.optionValueDao = dao.getOptionValue();
 		    }
-		    
+
 		    protected List<IOption> getValues() {
 		        List<IOption> list = new LinkedList<>();
 		        «FOR option : options»
@@ -42,7 +42,7 @@ class CardOptionsGenerator {
 		        «ENDFOR»
 		        return list;
 		    }
-		    
+
 		    private IOption createOption(String name, List<IOption> list) {
 		        IOption option = optionDao.create();
 		        option.setName(name);
@@ -50,7 +50,7 @@ class CardOptionsGenerator {
 		        list.add(option);
 		        return option;
 		    }
-		
+
 		    private IOptionValue createValue(IOption option, String value) {
 		        IOptionValue entity = optionValueDao.create();
 		        entity.setOption(option);
@@ -58,7 +58,7 @@ class CardOptionsGenerator {
 		        optionValueDao.add(entity);
 		        return entity;
 		    }
-		    
+
 		    «FOR o : options»
 		    	«compileOption(o)»
 		    «ENDFOR»

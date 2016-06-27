@@ -13,6 +13,9 @@ class IOptionGenerator implements ClassGenerator {
 		
 		import java.util.Set;
 		
+		/**
+		 * @author Philipp Daniels
+		 */
 		public interface IOption {
 		
 		    /**
@@ -45,6 +48,5 @@ class IOptionGenerator implements ClassGenerator {
 		     */
 		    void setOptionValues(Set<IOptionValue> set);
 		}
-		
 	'''
 }

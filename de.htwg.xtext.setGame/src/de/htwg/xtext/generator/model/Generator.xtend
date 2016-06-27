@@ -22,8 +22,13 @@ class Generator extends BaseGenerator {
 
 	override List<ClassGenerator> getList() {
 		var list = super.list;
+		list.add(new ICardGenerator())
+		list.add(new ICardListGenerator())
+		list.add(new ICardOptionGenerator())
+		list.add(new IGameGenerator())
 		list.add(new IOptionGenerator())
 		list.add(new IOptionValueGenerator())
+		list.add(new IPlayerGenerator())
 		return list
 	}
 }

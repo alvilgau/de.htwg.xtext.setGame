@@ -13,6 +13,9 @@ class OptionValueDaoGenerator implements ClassGenerator  {
 		
 		import de.htwg.se.setgame.model.IOptionValue;
 		
+		/**
+		 * @author Philipp Daniels
+		 */
 		public interface OptionValueDao {
 		
 		    /**
@@ -32,6 +35,5 @@ class OptionValueDaoGenerator implements ClassGenerator  {
 		     */
 		    void update(IOptionValue value);
 		}
-		
 	'''
 }

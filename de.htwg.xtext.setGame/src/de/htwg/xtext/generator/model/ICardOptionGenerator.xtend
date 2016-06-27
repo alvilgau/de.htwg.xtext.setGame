@@ -2,10 +2,10 @@ package de.htwg.xtext.generator.model
 
 import de.htwg.xtext.generator.ClassGenerator
 
-class IOptionValueGenerator implements ClassGenerator {
+class ICardOptionGenerator implements ClassGenerator {
 
 	override name() {
-		return "IOptionValue.java"
+		return "ICardOption.java"
 	}
 
 	override compile() '''
@@ -14,7 +14,7 @@ class IOptionValueGenerator implements ClassGenerator {
 		/**
 		 * @author Philipp Daniels
 		 */
-		public interface IOptionValue {
+		public interface ICardOption {
 		
 		    /**
 		     * @return Return id
@@ -27,24 +27,24 @@ class IOptionValueGenerator implements ClassGenerator {
 		    void setId(Integer id);
 		
 		    /**
-		     * @return Return IOption instance
+		     * @return Return ICard instance
 		     */
-		    IOption getOption();
+		    ICard getCard();
 		
 		    /**
-		     * @param option Set IOption instance
+		     * @param card Set ICard instance
 		     */
-		    void setOption(IOption option);
+		    void setCard(ICard card);
 		
 		    /**
-		     * @return Return value
+		     * @return Return IOptionValue instance
 		     */
-		    String getValue();
+		    IOptionValue getOption();
 		
 		    /**
-		     * @param value Set value
+		     * @param option Set IOptionValue instance
 		     */
-		    void setValue(String value);
+		    void setOption(IOptionValue option);
 		}
 	'''
 }

@@ -20,8 +20,14 @@ class Generator extends BaseGenerator {
 	
 	override List<ClassGenerator> getList() {
 		var list = super.list;
+		list.add(new CardDaoGenerator())
+		list.add(new CardListDaoGenerator())
+		list.add(new CardOptionDaoGenerator())
+		list.add(new GameDaoGenerator())
 		list.add(new OptionDaoGenerator())
 		list.add(new OptionValueDaoGenerator())
+		list.add(new PlayerDaoGenerator())
+		list.add(new DaoManagerGenerator())
 		return list
 	}
 }
