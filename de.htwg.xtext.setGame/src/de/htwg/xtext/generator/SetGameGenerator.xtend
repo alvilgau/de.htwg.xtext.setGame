@@ -23,7 +23,7 @@ class SetGameGenerator extends AbstractGenerator {
 
 		val pkgPrefix = "de/htwg/se/setgame/"
 		new de.htwg.xtext.generator.model.Generator(pkgPrefix + "model/").doGenerate(resource, fsa, context);
-		new de.htwg.xtext.generator.persistence.Generator(pkgPrefix + "model/").doGenerate(resource, fsa, context);
+		new de.htwg.xtext.generator.persistence.Generator(pkgPrefix + "util/persistence/").doGenerate(resource, fsa, context);
 
 		val options = resource.allContents.filter(Option).toList
 		fsa.generateFile(pkgPrefix + "controller/impl/" + cardOptionsGenerator.name(),
