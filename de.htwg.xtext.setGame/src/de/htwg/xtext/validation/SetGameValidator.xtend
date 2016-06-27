@@ -3,23 +3,29 @@
  */
 package de.htwg.xtext.validation
 
+import de.htwg.xtext.setGame.Model
+import de.htwg.xtext.setGame.SetGamePackage
+import org.eclipse.xtext.validation.Check
 
 /**
  * This class contains custom validation rules. 
- *
+ * 
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
  */
 class SetGameValidator extends AbstractSetGameValidator {
-	
-//	public static val INVALID_NAME = 'invalidName'
-//
-//	@Check
-//	def checkGreetingStartsWithCapital(Greeting greeting) {
-//		if (!Character.isUpperCase(greeting.name.charAt(0))) {
-//			warning('Name should start with a capital', 
-//					SetGamePackage.Literals.GREETING__NAME,
-//					INVALID_NAME)
-//		}
-//	}
-	
+
+	public static val MIN_NUMBER_OF_OPTION_VALUES = 3
+
+	@Check
+	def checkNumberOfOptionValues(Model model) {
+		var values = 0;
+		for (option : model.options) {
+			values += option.values.size
+		}
+
+		if (values < MIN_NUMBER_OF_OPTION_VALUES) {
+			error("You must define at least 3 option values", SetGamePackage.Literals.MODEL__OPTIONS)
+		}
+	}
+
 }
