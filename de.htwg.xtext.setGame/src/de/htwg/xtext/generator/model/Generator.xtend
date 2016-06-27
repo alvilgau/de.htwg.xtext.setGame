@@ -15,11 +15,11 @@ import de.htwg.xtext.generator.ClassGenerator
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#code-generation
  */
 class Generator extends BaseGenerator {
-	
+
 	new(String pkgPrefix) {
 		super(pkgPrefix + "model/")
 	}
-	
+
 	override List<ClassGenerator> getList() {
 		var list = super.list;
 		list.add(new IOptionGenerator())

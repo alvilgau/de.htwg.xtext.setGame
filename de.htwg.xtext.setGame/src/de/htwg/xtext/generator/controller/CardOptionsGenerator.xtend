@@ -1,4 +1,4 @@
-package de.htwg.xtext.generator
+package de.htwg.xtext.generator.controller
 
 import de.htwg.xtext.setGame.Option
 import java.util.List
@@ -65,7 +65,7 @@ class CardOptionsGenerator {
 		}
 	'''
 
-	def compileOption(Option option) '''
+	def private compileOption(Option option) '''
 		private void create«option.name.toFirstUpper»(List<IOption> list) {
 			IOption option = createOption("«option.name.toFirstUpper»", list);
 			LinkedHashSet<IOptionValue> values = new LinkedHashSet<>();

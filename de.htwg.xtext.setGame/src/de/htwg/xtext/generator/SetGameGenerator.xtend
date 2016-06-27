@@ -3,8 +3,6 @@
  */
 package de.htwg.xtext.generator
 
-import com.google.inject.Inject
-import de.htwg.xtext.setGame.Option
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
@@ -17,17 +15,10 @@ import org.eclipse.xtext.generator.IGeneratorContext
  */
 class SetGameGenerator extends AbstractGenerator {
 
-	@Inject CardOptionsGenerator cardOptionsGenerator;
-
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-
 		val pkgPrefix = "de/htwg/se/setgame/"
 		new de.htwg.xtext.generator.model.Generator(pkgPrefix).doGenerate(resource, fsa, context);
 		new de.htwg.xtext.generator.persistence.Generator(pkgPrefix).doGenerate(resource, fsa, context);
-
-		val options = resource.allContents.filter(Option).toList
-		fsa.generateFile(pkgPrefix + "controller/impl/" + cardOptionsGenerator.name(),
-			cardOptionsGenerator.compile(options))
-
+		new de.htwg.xtext.generator.controller.Generator(pkgPrefix).doGenerate(resource, fsa, context);
 	}
 }

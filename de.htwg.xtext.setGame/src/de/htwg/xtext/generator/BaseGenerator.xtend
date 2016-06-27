@@ -8,19 +8,23 @@ import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
 
 abstract class BaseGenerator extends AbstractGenerator {
-	
+
 	private String pkgPrefix
 
 	new(String pkgPrefix) {
 		this.pkgPrefix = pkgPrefix
 	}
-	
+
+	def String getPkgPrefix() {
+		return pkgPrefix
+	}
+
 	override doGenerate(Resource input, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		for (ClassGenerator g: list) {
 			fsa.generateFile(pkgPrefix + g.name(), g.compile())
 		}
 	}
-	
+
 	def List<ClassGenerator> getList() {
 		return new LinkedList<ClassGenerator>()
 	}
