@@ -17,8 +17,6 @@ import org.eclipse.xtext.generator.IGeneratorContext
  */
 class SetGameGenerator extends AbstractGenerator {
 
-	@Inject IOptionGenerator optionGenerator;
-	@Inject IOptionValueGenerator optionValueGenerator;
 	@Inject OptionDaoGenerator optionDaoGenerator;
 	@Inject OptionValueDaoGenerator optionValueDaoGenerator;
 	@Inject CardOptionsGenerator cardOptionsGenerator;
@@ -26,8 +24,7 @@ class SetGameGenerator extends AbstractGenerator {
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 
 		val pkgPrefix = "de/htwg/se/setgame/"
-		fsa.generateFile(pkgPrefix + "model/" + optionGenerator.name(), optionGenerator.compile())
-		fsa.generateFile(pkgPrefix + "model/" + optionValueGenerator.name(), optionValueGenerator.compile())
+		new ModelGenerator(pkgPrefix + "model/").doGenerate(resource, fsa, context);
 		fsa.generateFile(pkgPrefix + "util/persistence/" + optionDaoGenerator.name(), optionDaoGenerator.compile())
 		fsa.generateFile(pkgPrefix + "util/persistence/" + optionValueDaoGenerator.name(),
 			optionValueDaoGenerator.compile())

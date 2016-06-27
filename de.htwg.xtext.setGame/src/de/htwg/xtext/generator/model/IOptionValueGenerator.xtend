@@ -1,12 +1,14 @@
-package de.htwg.xtext.generator
+package de.htwg.xtext.generator.model
 
-class IOptionValueGenerator {
+import de.htwg.xtext.generator.ClassGenerator
 
-	def name() {
+class IOptionValueGenerator implements ClassGenerator {
+
+	override name() {
 		return "IOptionValue.java"
 	}
 
-	def compile() '''
+	override compile() '''
 		package de.htwg.se.setgame.model;
 		
 		public interface IOptionValue {
