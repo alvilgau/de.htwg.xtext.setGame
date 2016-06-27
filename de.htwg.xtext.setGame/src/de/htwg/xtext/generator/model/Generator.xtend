@@ -17,7 +17,7 @@ import de.htwg.xtext.generator.ClassGenerator
 class Generator extends BaseGenerator {
 	
 	new(String pkgPrefix) {
-		super(pkgPrefix)
+		super(pkgPrefix + "model/")
 	}
 	
 	override List<ClassGenerator> getList() {
