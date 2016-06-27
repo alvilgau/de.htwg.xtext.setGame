@@ -1,12 +1,14 @@
-package de.htwg.xtext.generator
+package de.htwg.xtext.generator.persistence
 
-class OptionValueDaoGenerator {
+import de.htwg.xtext.generator.ClassGenerator
 
-	def name() {
+class OptionValueDaoGenerator implements ClassGenerator  {
+
+	override name() {
 		return "OptionValueDao.java"
 	}
 
-	def compile() '''
+	override compile() '''
 		package de.htwg.se.setgame.util.persistence;
 		
 		import de.htwg.se.setgame.model.IOptionValue;
