@@ -39,7 +39,7 @@ class Generator extends BaseGenerator {
 				new de.htwg.xtext.generator.persistence.db4o.Generator(pkgPrefix).doGenerate(input, fsa, context)
 			}
 			case HIBERNATE: {
-				
+				new de.htwg.xtext.generator.persistence.hibernate.Generator(pkgPrefix).doGenerate(input, fsa, context)
 			}
 		}
 	}
