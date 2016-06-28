@@ -36,7 +36,7 @@ class Generator extends BaseGenerator {
 				new de.htwg.xtext.generator.persistence.couchDb.Generator(pkgPrefix).doGenerate(input, fsa, context)
 			}
 			case DB4O: {
-				
+				new de.htwg.xtext.generator.persistence.db4o.Generator(pkgPrefix).doGenerate(input, fsa, context)
 			}
 			case HIBERNATE: {
 				
