@@ -3,8 +3,13 @@ grammar de.htwg.xtext.SetGame with org.eclipse.xtext.common.Terminals
 generate setGame "http://www.htwg.de/xtext/SetGame"
 
 Model:
-	(options+=Option)*;
+	persistence=Persistence? (options+=Option)*;
+
+enum PersistenceEnum:
+	db4o | hibernate | couchdb;
+
+Persistence:
+	'persistence' value=PersistenceEnum;
 
 Option:
 	'option' name=ID '{' (values+=STRING)+ '}';
-	

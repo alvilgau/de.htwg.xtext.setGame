@@ -6,8 +6,17 @@
     complianceLevel="6.0" copyrightFields="false" runtimeVersion="2.11">
   <genPackages prefix="SetGame" basePackage="de.htwg.xtext" disposableProviderFactory="true"
       fileExtensions="setgame" ecorePackage="SetGame.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="SetGame.ecore#//PersistenceEnum">
+      <genEnumLiterals ecoreEnumLiteral="SetGame.ecore#//PersistenceEnum/db4o"/>
+      <genEnumLiterals ecoreEnumLiteral="SetGame.ecore#//PersistenceEnum/hibernate"/>
+      <genEnumLiterals ecoreEnumLiteral="SetGame.ecore#//PersistenceEnum/couchdb"/>
+    </genEnums>
     <genClasses ecoreClass="SetGame.ecore#//Model">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SetGame.ecore#//Model/persistence"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SetGame.ecore#//Model/options"/>
+    </genClasses>
+    <genClasses ecoreClass="SetGame.ecore#//Persistence">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SetGame.ecore#//Persistence/value"/>
     </genClasses>
     <genClasses ecoreClass="SetGame.ecore#//Option">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SetGame.ecore#//Option/name"/>
